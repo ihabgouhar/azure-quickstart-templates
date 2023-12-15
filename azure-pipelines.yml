@@ -1,4 +1,17 @@
 # .NET Core Function App to Windows on Azure
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'ARMPipeline-conn'
+    subscriptionId: '3e2f829a-25f0-453a-bc39-774189d6e430'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'PiplineRG'
+    location: 'Central US'
+    templateLocation: 'URL of the file'
+    csmFileLink: 'https://raw.githubusercontent.com/ihabgouhar/azure-quickstart-templates/master/demos/vmss-windows-jumpbox/azuredeploy.json'
+    overrideParameters: '-projectName ArmPipline'
+    deploymentMode: 'Incremental'
+    deploymentName: 'DeployPipelineTemplate'
 # Build a .NET Core function app and deploy it to Azure as a Windows function App.
 # Add steps that analyze code, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/en-us/azure/devops/pipelines/languages/dotnet-core
